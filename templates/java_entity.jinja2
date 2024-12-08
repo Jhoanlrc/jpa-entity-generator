@@ -1,0 +1,31 @@
+package com.tu_paquete.entidades;
+
+import jakarta.persistence.*;
+import java.util.*;
+
+@Entity
+@Table(name = "{{ table_name }}")
+public class {{ table_name.capitalize() }} {
+
+{% for column in columns %}
+    @Column(name = "{{ column['name'] }}")
+    private {{ 'String' if column['type'] in ['VARCHAR', 'TEXT'] else 'Integer' }} {{ column['name'] }};
+{% endfor %}
+
+{% for fk in foreign_keys %}
+    @ManyToOne
+    @JoinColumn(name = "{{ fk['constrained_columns'][0] }}")
+    private {{ fk['referred_table'].capitalize() }} {{ fk['constrained_columns'][0] }};
+{% endfor %}
+
+    // Getters y Setters
+    {% for column in columns %}
+    public {{ 'String' if column['type'] in ['VARCHAR', 'TEXT'] else 'Integer' }} get{{ column['name'].capitalize() }}() {
+        return {{ column['name'] }};
+    }
+
+    public void set{{ column['name'].capitalize() }}({{ 'String' if column['type'] in ['VARCHAR', 'TEXT'] else 'Integer' }} {{ column['name'] }}) {
+        this.{{ column['name'] }} = {{ column['name'] }};
+    }
+    {% endfor %}
+}
