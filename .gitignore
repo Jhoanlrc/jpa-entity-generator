@@ -1,0 +1,32 @@
+# Excluir el directorio de salida
+/output/
+
+# Archivos específicos de Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+
+# Archivos de logs
+*.log
+
+# Archivos de configuración del entorno virtual
+.env/
+venv/
+.venv/
+
+# Archivos específicos de sistemas operativos
+.DS_Store
+Thumbs.db
+
+# Configuración específica de IDEs
+.idea/
+.vscode/
+
+# Archivos temporales
+*.tmp
+*.swp
+
+# Archivos de configuración de dependencias
+pip-log.txt
